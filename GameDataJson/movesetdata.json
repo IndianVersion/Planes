@@ -1,0 +1,16 @@
+{
+	"utilizesStaticHBS": true,
+	"$attacksClass": {
+		"attackTypeOne": {
+			"utilizesStaticHBS": false,
+			"attackType": "punch",
+			"attackDamage": 5
+		}
+		"attackTypeTwo": {
+			"utilizesStaticHBS": false,
+			"attackType": "footsweep",
+			"attackDamage": 50
+		}
+		
+	}
+}
