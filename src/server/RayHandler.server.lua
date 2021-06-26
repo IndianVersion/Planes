@@ -5,7 +5,7 @@ local isFinishedRaying : boolean  = false
 local self = {
 	raysize = 50;
 }
-local collidable = workspace:GetChildren()
+local collidable : any = workspace:GetChildren()
 local collisionObjects = {}
 
 function MakeRay()
@@ -26,10 +26,10 @@ function MakeRay()
 						part.Size = Vector3.new(0, self.raysize, 0)
 						part.Size += Vector3.new(0, -newRay.Direction, 0)
 						game:GetService("Debris"):AddItem(part, 1)
-						for count = 1, 5 do
+						for count : number = 1, 5 do
 							delay(count, function()
 								-- move to next object to ray on
-
+								
 							end)
 						end
 					else
