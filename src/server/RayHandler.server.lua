@@ -2,11 +2,14 @@
 -- Edited By Soqwly also for no reason @ june/25/2021 1:30-2:00 AM.
 local SpawnLocation : any = workspace.SpawnLocation
 local isFinishedRaying : boolean  = false
+local maxNum : number = 5
 local self = {
 	raysize = 50;
 }
 local collidable : any = workspace:GetChildren()
 local collisionObjects = {}
+local global_direction
+local all = {}
 
 function MakeRay()
 	table.insert(collidable)
@@ -29,7 +32,27 @@ function MakeRay()
 						for count : number = 1, 5 do
 							delay(count, function()
 								-- move to next object to ray on
-								
+								for timer : number = 1, maxNum do
+									if (timer == maxNum) then
+										isFinishedRaying = true
+										if isFinishedRaying then
+											global_direction  = {}
+											table.insert(global_direction, newRay)
+											for dir in pairs (global_direction) do
+												num : number = dir
+												RayDir : number = global_direction[dir].Direction.Y
+											end
+										end
+										local allObjects : any = collisionObjects[i][#collidable]
+										table.insert(all, allObjects)
+										for ofu in pairs (all) do
+											wait(count + timer)
+											table.remove(global_direction, num)
+											AlteredRayDirection = -RayDir/all[ofu].Position.Y
+											part.Position : Vector3 = Vector3.new(0, AlteredRayDirection, 0)
+										end
+									end
+								end
 							end)
 						end
 					else
