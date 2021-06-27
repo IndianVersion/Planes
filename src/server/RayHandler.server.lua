@@ -51,10 +51,17 @@ function MakeRay()
 										table.insert(all, allObjects)
 										for ofu in pairs (all) do
 											ApplyHealthToAllObjects(all[ofu])
-											wait(count + timer)
-											table.remove(global_direction, num)
-											AlteredRayDirection = -RayDir/all[ofu].Position.Y
-											part.Position : Vector3 = Vector3.new(0, AlteredRayDirection, 0)
+											local min : number = all[ofu]:GetAttribute("minHealth")
+											local max : number = all[ofu]:GetAttribute("maxHealth")
+											local randomizedHealth : number = math.random(min, max)
+											local healthValue : any = Instance.new("IntValue", all[ofu])
+											healthValue.Name = "HealthValue"
+											healthValue.Value = randomizedHealth
+											if (all[ofu].healthValue.Value == 0) then
+												table.remove(global_direction, num)
+												AlteredRayDirection : number = -RayDir/all[ofu].Position.Y
+												part.Position : Vector3 = Vector3.new(0, AlteredRayDirection, 0)
+											end
 										end
 									end
 								end
