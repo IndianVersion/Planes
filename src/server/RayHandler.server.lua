@@ -60,7 +60,7 @@ function MakeRay()
 											if (all[ofu].healthValue.Value == 0) then
 												table.remove(global_direction, num)
 												AlteredRayDirection : number = -RayDir/all[ofu].Position.Y
-												part.Position : Vector3 = Vector3.new(0, AlteredRayDirection, 0)
+												part.Position = Vector3.new(0, AlteredRayDirection, 0)
 											end
 										end
 									end
