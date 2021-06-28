@@ -6,11 +6,10 @@ local store : any = {}
 
 RunService.RenderStepped:Connect(
 	function ()
-		-- not smoothe yet
 		table.insert(store, AirplaneNose.Position) -- clamp in server
 		for i in pairs (store) do
 			if (store[i] ~= nil) then
-				local clampedStoredValue : number = math.clamp(store[i].Y, 90, 180)
+				
 				ImageLabel.Rotation = store[i].Y
 			else
 				return;
