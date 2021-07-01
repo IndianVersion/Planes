@@ -38,7 +38,20 @@ RunService.RenderStepped:Connect(function()
 				ImageLabel.Rotation = storeAirplaneNosePos[i].Y
 				for o in pairs (storePlanePos) do
 					nums = o
-					
+					local origin : Vector3 = Vector3.new(0, -PlaneCenter.Position.Y, 0)
+					local direction : Vector3 = Vector3.new(0, math.huge, 0)
+					local cast  = Ray.new(origin, direction)
+					local DirBeam : any = Instance.new("Part", workspace)
+					DirBeam.Transparency = 1
+					DirBeam.Anchored = true
+					DirBeam.CanCollide = false
+					DirBeam.Color = Color3.fromRGB(255, 0, 0)
+					local ScaleDist : number = (storePlanePos[o] - workspace.Baseplate.Position).magnitude
+					DirBeam.Size = Vector3.new(2.5, -cast.Direction/storePlanePos[o].Y+ScaleDist, 2.5)
+					local RayAndBaseplate : any = table.pack(workspace.Baseplate, DirBeam)
+					if workspace:ArePartsTouchingOthers(RayAndBaseplate) == nil then
+						
+					end
 				end
 			end
 		else
