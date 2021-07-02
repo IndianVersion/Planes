@@ -1,16 +1,18 @@
-local RunService : any = game:GetService("RunService")
+local RunService = game:GetService("RunService")
 local AirplaneNose : any = workspace.AirplaneNose
 local PlaneCenter : any = workspace.PlaneCenter
 local stalled : boolean = false
+local touchingGround : boolean = false
 local stallHeight : number = 500
 local ImageLabel : any = script.Parent
 local MaxRot : number = 180
 local storeAirplaneNosePos : any = {}
 local storePlanePos : any = {}
+local flying : boolean = _G.flying
+local PlaneHandler : any = require(game.ReplicatedStorage.Common:WaitForChild("PlaneHandler"))
 
 function TriggerResetX(x : number)
-	x = 0
-	return;
+	return x == 0
 end
 
 function TriggerOnStall()
@@ -40,7 +42,7 @@ RunService.RenderStepped:Connect(function()
 					nums = o
 					local origin : Vector3 = Vector3.new(0, -PlaneCenter.Position.Y, 0)
 					local direction : Vector3 = Vector3.new(0, math.huge, 0)
-					local cast  = Ray.new(origin, direction)
+					local cast : any = Ray.new(origin, direction)
 					local DirBeam : any = Instance.new("Part", workspace)
 					DirBeam.Transparency = 1
 					DirBeam.Anchored = true
@@ -50,7 +52,13 @@ RunService.RenderStepped:Connect(function()
 					DirBeam.Size = Vector3.new(2.5, -cast.Direction/storePlanePos[o].Y+ScaleDist, 2.5)
 					local RayAndBaseplate : any = table.pack(workspace.Baseplate, DirBeam)
 					if workspace:ArePartsTouchingOthers(RayAndBaseplate) == nil then
-						
+						touchingGround = true
+						while touchingGround do
+							PlaneHandler.AllKeysToFly(touchingGround)
+							break
+						end
+					else
+						touchingGround = false
 					end
 				end
 			end
