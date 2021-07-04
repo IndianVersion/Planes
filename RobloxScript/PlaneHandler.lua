@@ -68,6 +68,7 @@ function PlaneHandler.AllKeysToStop()
 					table.insert(numForMinus, taxiingDefault)
 					if taxiingDefault == 0 then
 						fullStop = true
+						break
 					end
 				end
 				if fullStop then
