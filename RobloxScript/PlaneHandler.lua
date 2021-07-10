@@ -1,26 +1,28 @@
 local PlaneHandler = {}
 
 local UserInputService = game:GetService("UserInputService")
-local PlaneCenter : any = workspace.PlaneCenter
-local taxiing : boolean = false
-local velSet : boolean = false
-local afterVelSet : boolean = false
-local fullStop : boolean = false
-local numsCounter : any = {}
-local numForMinus : any = {}
+local PlaneCenter: any = workspace.PlaneCenter
+local taxiing: boolean = false
+local velSet: boolean = false
+local afterVelSet: boolean = false
+local fullStop: boolean = false
+local numsCounter: any = {}
+local numForMinus: any = {}
 
-local controllingKeys : any = {
+local controllingKeys: any = {
 	forward == "W";
 	backwards == "S";
 	right == "D";
 	left == "A"
 }
 
-function PlaneHandler.AllKeysToFly(touchingGround : boolean)
+
+
+function PlaneHandler.AllKeysToFly(touchingGround: boolean)
 	for int in pairs (controllingKeys) do
 		every = int
 		UserInputService.InputBegan:Connect(
-			function (input : any, isTyping : boolean)
+			function (input: any, isTyping: boolean)
 				if input.KeyCode == Enum.KeyCode[controllingKeys[int]] then
 					flying = true
 					planeTaxiingSpeed = 30
@@ -58,7 +60,7 @@ end
 
 function PlaneHandler.AllKeysToStop()
 	UserInputService.InputEnded:Connect(
-		function (input : any, isTyping : boolean)
+		function (input: any, isTyping: boolean)
 			if isTyping then return end
 			if input.KeyCode == Enum.KeyCode[controllingKeys[every]] then
 				flying = false
