@@ -9,14 +9,18 @@ local fullStop: boolean = false
 local numsCounter: any = {}
 local numForMinus: any = {}
 
+local maxFuel: number = 250000
+local loss: number = 135.256
+local empty: number = 0
+
+local MainFuel: number = 0
+
 local controllingKeys: any = {
 	forward == "W";
 	backwards == "S";
 	right == "D";
 	left == "A"
 }
-
-
 
 function PlaneHandler.AllKeysToFly(touchingGround: boolean)
 	for int in pairs (controllingKeys) do
@@ -32,6 +36,13 @@ function PlaneHandler.AllKeysToFly(touchingGround: boolean)
 					-- apply force to -z
 					taxiing = true; -- use for triggering a stop on the plane
 					if taxiing then
+						for taxiingFuelUse = maxFuel, empty, -1 do
+							MainFuel = taxiingFuelUse
+							if MainFuel ~= nil then
+								MainFuel -= loss
+								local res = math.floor(MainFuel)
+							end
+						end
 						while wait(0.1) do
 							taxiingDefault += 1
 							if taxiingDefault == planeTaxiingSpeed then
