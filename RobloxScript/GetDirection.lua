@@ -76,4 +76,4 @@ SummonRayCast = function()
 	end
 end
 
-RunService.HeartBeat:Connect(SummonRayCast)
+RunService.Heartbeat:Connect(SummonRayCast)
