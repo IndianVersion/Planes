@@ -22,7 +22,7 @@ local controllingKeys: any = {
 	left == "A"
 }
 
-function PlaneHandler.AllKeysToFly(touchingGround: boolean)
+PlaneHandler.AllKeysToFly = function(touchingGround: boolean)
 	for int in pairs (controllingKeys) do
 		every = int
 		UserInputService.InputBegan:Connect(
@@ -69,7 +69,7 @@ function PlaneHandler.AllKeysToFly(touchingGround: boolean)
 	end
 end
 
-function PlaneHandler.AllKeysToStop()
+PlaneHandler.AllKeysToStop = function()
 	UserInputService.InputEnded:Connect(
 		function (input: any, isTyping: boolean)
 			if isTyping then return end
@@ -95,7 +95,7 @@ function PlaneHandler.AllKeysToStop()
 	)
 end
 
-function PlaneHandler.RemapKeys()
+PlaneHandler.RemapKeys = function()
 	
 end
 
