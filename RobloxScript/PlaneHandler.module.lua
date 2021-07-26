@@ -44,6 +44,7 @@ PlaneHandler.AllKeysToFly = function(touchingGround: boolean)
 							end
 						end
 						while wait(0.1) do
+							local taxiingDefault = math.clamp(taxiingDefault, 10, planeTaxiingSpeed)
 							taxiingDefault += 1
 							if taxiingDefault == planeTaxiingSpeed then
 								velSet = true
