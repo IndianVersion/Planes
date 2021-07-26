@@ -10,12 +10,12 @@ local collisionObjects = {}
 local global_direction
 local all = {}
 
-function ApplyHealthToAllObjects(x: any)
+ApplyHealthToAllObjects = function(x: any)
 	x:SetAttribute("minHealth", 50)
 	x:SetAttribute("maxHealth", 100)
 end
 
-function MakeRay()
+MakeRay = function()
 	table.insert(collisionObjects, collidable)
 	while wait(0.5) do
 		for i in ipairs (collisionObjects) do
