@@ -5,10 +5,10 @@ local isFinishedRaying: boolean  = false
 local collidable: any = workspace:GetChildren()
 local maxNum: number = 5
 
-local params = {raysize = 50}
-local collisionObjects = {}
+local params: any = {raysize = 50}
+local collisionObjects: any = {}
 local global_direction
-local all = {}
+local all: any = {}
 
 ApplyHealthToAllObjects = function(x: any)
 	x:SetAttribute("minHealth", 50)
