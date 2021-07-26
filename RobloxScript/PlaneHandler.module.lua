@@ -38,7 +38,7 @@ PlaneHandler.AllKeysToFly = function(touchingGround: boolean)
 					if taxiing then
 						for taxiingFuelUse = maxFuel, empty, -1 do
 							MainFuel = taxiingFuelUse
-							if MainFuel ~= nil then
+							if MainFuel ~= 0 then
 								MainFuel -= loss
 								local res = math.floor(MainFuel)
 							end
