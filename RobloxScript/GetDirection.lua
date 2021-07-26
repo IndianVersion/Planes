@@ -11,15 +11,15 @@ local storePlanePos: any = {}
 local flying: boolean = _G.flying
 local PlaneHandler: any = require(game.ReplicatedStorage.Common:WaitForChild("PlaneHandler"))
 
-function TriggerResetX(x: number)
+TriggerResetX = function(x: number)
 	return x == 0
 end
 
-function TriggerOnStall()
+TriggerOnStall = function()
 
 end
 
-RunService.RenderStepped:Connect(function()
+SummonRayCast = function()
 	table.insert(storeAirplaneNosePos, AirplaneNose.Position)
 	table.insert(storePlanePos, PlaneCenter.Position)
 	for i in pairs (storeAirplaneNosePos) do
@@ -68,10 +68,12 @@ RunService.RenderStepped:Connect(function()
 			return;
 		end
 	end
-	for liteDel: number = 1, all do
+	for liteDel = 1, all do
 		table.remove(storeAirplaneNosePos, liteDel)
 	end
-	for liteDel_2: number = 1, nums do
+	for liteDel_2 = 1, nums do
 		table.remove(storePlanePos, liteDel_2)
 	end
-end)
+end
+
+RunService.HeartBeat:Connect(SummonRayCast)
